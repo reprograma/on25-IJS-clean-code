@@ -3,7 +3,7 @@
   <img src="assets/reprograma-fundos-claros.png" alt="logo reprograma" width="500">
 </h1>
 
-# Tema da Aula
+# Código limpo I
 
 Turma Online 25 - Imersão JavaScript | 2023 | Professora Camla Monteiro
 
