@@ -25,10 +25,11 @@ Antes de começar, vamos organizar nosso setup.
 
 ### Atividades
 
-1. **feito em aula:** Fork o projeto (GildedRose Refactoring Kata)[https://github.com/emilybache/GildedRose-Refactoring-Kata], e refatore-o utilizando as melhores práticas. O exercício pode ser feito usando o código das pastas js-jest ou typescript.
- **Desafio:** Especificações de requisitos aqui.
+1. **feito em aula:** No projeto GildedRose Refactoring Kata,  refatoramos utilizando as melhores práticas. 
 
-2. **para casa:** Fork o projeto (Tennis Refactoring Kata)[https://github.com/emilybache/Tennis-Refactoring-Kata], e refatore-o utilizando as melhores práticas. O exercício pode ser feito usando o código das pastas javascript-jest ou typescript. 
+
+2. **para casa:** Na pasta temos o projeto Tennis Refactoring Kata,  recisamos refatorar utilizando as melhores práticas. 
+O exercício pode ser feito usando o código das pastas javascript-jest ou typescript. 
 **Desafio:** Especificações de requisitos estão no README.md do projeto
 
 
