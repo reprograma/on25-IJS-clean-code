@@ -21,9 +21,6 @@ Antes de começar, vamos organizar nosso setup.
 ### Links Úteis
 * Notion da aula https://muddy-estimate-da7.notion.site/C-digo-limpo-1-aula-dia-12-08-ab67cb9585084129a72fd7e85c60fd60
 
-<p align="center">
-Desenvolvido com :purple_heart:  
-</p>
 
 
 ### Atividades
@@ -33,3 +30,8 @@ Desenvolvido com :purple_heart:
 
 2. **para casa:** Fork o projeto (Tennis Refactoring Kata)[https://github.com/emilybache/Tennis-Refactoring-Kata], e refatore-o utilizando as melhores práticas. O exercício pode ser feito usando o código das pastas javascript-jest ou typescript. 
 **Desafio:** Especificações de requisitos estão no README.md do projeto
+
+
+<p align="center">
+Desenvolvido com :purple_heart:  
+</p>
