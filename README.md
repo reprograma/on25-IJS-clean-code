@@ -29,7 +29,7 @@ Antes de começar, vamos organizar nosso setup.
 
 
 2. **para casa:** Na pasta temos o projeto Tennis Refactoring Kata,  recisamos refatorar utilizando as melhores práticas. 
-O exercício pode ser feito usando o código da pasta javascript-jest. 
+O exercício deve ser feito usando o código da pasta javascript-jest. 
 **Desafio:** Especificações de requisitos estão no README.md do projeto
 
 
