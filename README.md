@@ -1,4 +1,4 @@
-# on25-IJS-projeto-I
+# on25-IJS-codigo-limpo-I
 <h1 align="center">
   <img src="assets/reprograma-fundos-claros.png" alt="logo reprograma" width="500">
 </h1>
@@ -29,7 +29,7 @@ Antes de começar, vamos organizar nosso setup.
 
 
 2. **para casa:** Na pasta temos o projeto Tennis Refactoring Kata,  recisamos refatorar utilizando as melhores práticas. 
-O exercício pode ser feito usando o código das pastas javascript-jest ou typescript. 
+O exercício pode ser feito usando o código da pasta javascript-jest. 
 **Desafio:** Especificações de requisitos estão no README.md do projeto
 
 
