@@ -5,6 +5,7 @@ var getScore1 = require('./tennis1');
 var getScore2 = require('./tennis2');
 var getScore3 = require('./tennis3');
 var getScore4 = require('./tennis4');
+var getScore5 = require('./tennis1Refatored')
 
 var allScores = [
   [0, 0, "Love-All"],
@@ -68,5 +69,11 @@ describe('getScore3', function() {
 describe('getScore4', function() {
   each(allScores).it("when the points are %s:%s is %s", function(p1, p2, expected) {
     expect(getScore4(p1, p2)).toEqual(expected);
+  });
+});
+//test refactored
+describe('getScore5', function() {
+  each(allScores).it("when the points are %s:%s is %s", function(p1, p2, expected) {
+    expect(getScore5(p1, p2)).toEqual(expected);
   });
 });
