@@ -4,6 +4,7 @@ function getScore(m_score1, m_score2) {
     var score = "";
     var tempScore = 0;
     if (m_score1 === m_score2) {
+        console.log(m_score1);
         switch (m_score1) {
             case 0:
                 score = "Love-All";
