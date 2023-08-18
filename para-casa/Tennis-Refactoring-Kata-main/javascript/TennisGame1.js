@@ -24,14 +24,22 @@ TennisGame1.prototype.getScore = function() {
 };
 
 TennisGame1.prototype.getEqualScore = function() {
-    if (this.player1Score >= 3) {
-        return "Deuce";
-    } else {
-        return [
-            "Love-All",
-            "Fifteen-All",
-            "Thirty-All"
-        ][this.player1Score];
+    let score = ""
+    if(this.player1Score === this.player2Score){
+        switch (this.player1Score) {
+            case 0:
+                score = "Love-All";
+                break;
+            case 1:
+                score =  "Fifteen-All";
+                break;
+            case 2:
+                score = "Thirty-All";
+                break;
+            default:
+                score = "Deuce";
+                break;
+        }
     }
 };
 
@@ -46,10 +54,33 @@ TennisGame1.prototype.getAdvantageOrWin = function() {
 };
 
 TennisGame1.prototype.getRegularScore = function() {
-    const scoreNames = ["Love", "Fifteen", "Thirty", "Forty"];
+    for (var i = 1; i < 3; i++) {
+        if (i === 1) tempScore = this.m_score1;
+        else {
+            score += "-";
+            tempScore = this.m_score2;
+        }
+        switch (tempScore) {
+            case 0:
+                score += "Love";
+                break;
+            case 1:
+                score += "Fifteen";
+                break;
+            case 2:
+                score += "Thirty";
+                break;
+            case 3:
+                score += "Forty";
+                break;
+        }
+    }
+    return score;
+}
+    // const scoreNames = ["Love", "Fifteen", "Thirty", "Forty"];
 
-    return scoreNames[this.player1Score] + "-" + scoreNames[this.player2Score];
-};
+    // return scoreNames[this.player1Score] + "-" + scoreNames[this.player2Score];
+//};
 
 
  module.exports = TennisGame1;
