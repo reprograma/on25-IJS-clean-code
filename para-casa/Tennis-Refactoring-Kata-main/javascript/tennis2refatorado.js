@@ -1,4 +1,4 @@
-class JogoDeTenis2 {
+class TennisGame2 {
     constructor(player1Name, player2Name) {
         this.P1point = 0;
         this.P2point = 0;
@@ -9,7 +9,7 @@ class JogoDeTenis2 {
         this.score = "";
     }
 
-    Score() {
+    getScore() {
         if (this.P1point === this.P2point && this.P1point < 3) {
             switch (this.P1point) {
                 case 0:
@@ -75,14 +75,16 @@ class JogoDeTenis2 {
         } if (player == this.player2Name) {
             this.P2point = number;
         } else {
-            console.log("Informe um jogador válido")
+            throw 'Error';
         }
     }
 }
 
 
 
-const jogo1 = new JogoDeTenis2("Ana", "Paulo");
+/*const jogo1 = new TennisGame2("Ana", "Paulo");
 jogo1.setScore("Ana", 2);
 jogo1.setScore("Paulo", 2);
-jogo1.Score();
+jogo1.getScore();*/
+
+module.exports = TennisGame2;
