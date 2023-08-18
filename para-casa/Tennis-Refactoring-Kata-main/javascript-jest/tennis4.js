@@ -50,7 +50,7 @@ class TennisResult {
     }
 
     format() {
-        if ("" === this.receiverScore) {
+        if (this.receiverScore === "") {
             return this.serverScore;
         }
         if (this.serverScore === this.receiverScore) {

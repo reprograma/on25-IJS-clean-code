@@ -1,14 +1,14 @@
-if (typeof TennisGame1 === "undefined") {
-    var TennisGame1 = require("./TennisGame1.js");
-}
-if (typeof TennisGame2 === "undefined") {
-    var TennisGame2 = require("./TennisGame2.js");
-}
-if (typeof TennisGame3 === "undefined") {
-    var TennisGame3 = require("./TennisGame3.js");
-}
 
-var allScores = [
+    let TennisGame1 = require("./TennisGame1.js");
+
+
+    let TennisGame2 = require("./TennisGame2.js");
+
+
+    let TennisGame3 = require("./TennisGame3.js");
+
+
+const allScores = [
     [0, 0, "Love-All"],
     [1, 1, "Fifteen-All"],
     [2, 2, "Thirty-All"],
@@ -49,13 +49,13 @@ var allScores = [
     [14, 16, "Win for player2"]
 ];
 
-var checkScore = function(reporter, TennisGame, player1Score, player2Score, expectedScore) {
-    var highestScore = Math.max(player1Score, player2Score);
-    var game;
-    var result;
-    var message = "";
-    var ok = false;
-    var i;
+let checkScore = function(reporter, TennisGame, player1Score, player2Score, expectedScore) {
+    let highestScore = Math.max(player1Score, player2Score);
+    let game;
+    let result;
+    let message = "";
+    let ok = false;
+    let i;
 
     try {
         game = new TennisGame("player1", "player2");
@@ -81,30 +81,30 @@ var checkScore = function(reporter, TennisGame, player1Score, player2Score, expe
     reporter.addCase(expectedScore, ok, message);
 };
 
-var runSuiteOnGame = function(reporter, TennisGame, title) {
+let runSuiteOnGame = function(reporter, TennisGame, title) {
     reporter.addSuite(title);
     allScores.forEach(function(score) {
         checkScore(reporter, TennisGame, score[0], score[1], score[2]);
     });
 };
 
-var getBrowserReporter = function() {
-    var results = document.getElementById("results");
-    var total = document.getElementById("total");
-    var reporter = {
+let getBrowserReporter = function() {
+    let results = document.getElementById("results");
+    let total = document.getElementById("total");
+    let reporter = {
         errors: 0,
         addSuite: function(title) {
             results.innerHTML += "<tr style=\"background:#D0D0D0;\"><td>" + title + " </td><td></td></tr>";
         },
         addCase: function(title, ok, message) {
-            var color = ok ? "#20FF20" : "#FF2020";
+            let color = ok ? "#20FF20" : "#FF2020";
             results.innerHTML += "<tr><td>" + title + "</td><td style=\"background:" + color + ";\">" + message + "</td></tr>";
             if (!ok) {
                 this.errors++;
             }
         },
         done: function() {
-            var color = (this.errors === 0) ? "#20FF20" : "#FF2020";
+            let color = (this.errors === 0) ? "#20FF20" : "#FF2020";
             total.innerHTML = "<div style=\"background:" + color + ";\">" + this.errors + " failure(s)!</div>"
         }
     };
@@ -112,8 +112,8 @@ var getBrowserReporter = function() {
     return reporter;
 };
 
-var getConsoleReporter = function() {
-    var reporter = {
+let getConsoleReporter = function() {
+    let reporter = {
         errors: 0,
         addSuite: function(title) {
             console.log("Running suite '" + title + "'...");
@@ -136,7 +136,7 @@ var getConsoleReporter = function() {
     return reporter;
 };
 
-var reporter = null;
+let reporter = null;
 
 if (typeof window !== "undefined") {
     reporter = getBrowserReporter();
