@@ -56,12 +56,12 @@ var TennisGame3 = function (p1N, p2N) {
   this.p1Name = p1Name;
   this.p2Name = p2Name;
 
-  sump1p2 = this.p1Score + this.p2Score;
+   ;
 };
 
 TennisGame3.prototype.getScore = function () {
   var s;
-  if (this.p1Score < 4 && this.p2Score < 4 && sump1p2 < 6) {
+  if (this.p1Score < 4 && this.p2Score < 4 && this.p1Score + this.p2Score < 6) {
     var names = ["Love", "Fifteen", "Thirty", "Forty"];
     score = names[this.p1Score];
 
@@ -72,11 +72,13 @@ TennisGame3.prototype.getScore = function () {
     }
     
   } else {
-    if (this.p1 == this.p2) return "Deuce";
-    s = this.p1 > this.p2 ? this.p1N : this.p2N;
+    if (this.p1 == this.p2) {
+      return "Deuce";}
+
+    score = this.p1 > this.p2 ? this.p1N : this.p2N;
     return (this.p1 - this.p2) * (this.p1 - this.p2) == 1
-      ? "Advantage " + s
-      : "Win for " + s;
+      ? "Advantage " + score
+      : "Win for " + score;
   }
 };
 
