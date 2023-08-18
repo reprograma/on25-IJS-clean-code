@@ -60,8 +60,8 @@ describe('getScore2', function() {
 });
 
 describe('getScore3', function() {
-  each(allScores).it("when the points are %s:%s is %s", function(p1, p2, expected) {
-    expect(getScore3(p1, p2)).toEqual(expected);
+  each(allScores).it("when the points are %s:%s is %s", function(pointsP1, pointsP2, expected) {
+    expect(getScore3(pointsP1, pointsP2)).toEqual(expected);
   });
 });
 
