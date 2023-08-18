@@ -1,19 +1,19 @@
 'use strict';
 
-function getScore(p1, p2) {
-    var s;
-    let p1N = "player1";
-    let p2N = "player2";
-    if ((p1 < 4 && p2 < 4) && (p1 + p2 < 6)) {
-        var p = ["Love", "Fifteen", "Thirty", "Forty"];
-        s = p[p1];
-        return (p1 === p2) ? s + "-All" : s + "-" + p[p2];
+function getScore(player1, player2) {
+    var winner;
+    let pointsPlayer1 = "player1";
+    let pointsPlayer2 = "player2";
+    if ((player1 < 4 && player2 < 4) && (player1 + player2 < 6)) {
+        var resultado = ["Love", "Fifteen", "Thirty", "Forty"];
+        winner = resultado[player1];
+        return (player1 === player2) ? winner + "-All" : winner + "-" + resultado[player2];
     } else {
-        if (p1 === p2) {
+        if (player1 === player2) {
             return "Deuce";
         }
-        s = p1 > p2 ? p1N : p2N;
-        return ((p1 - p2) * (p1 - p2) === 1) ? "Advantage " + s : "Win for " + s;
+        winner = player1 > player2 ? pointsPlayer1 : pointsPlayer2;
+        return ((player1 - player2) * (player1 - player2) === 1) ? "Advantage " + winner : "Win for " + winner;
     }
 }
 

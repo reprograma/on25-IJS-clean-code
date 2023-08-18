@@ -51,3 +51,4 @@ function getScore(m_score1, m_score2) {
 }
 
 module.exports = getScore;
+
