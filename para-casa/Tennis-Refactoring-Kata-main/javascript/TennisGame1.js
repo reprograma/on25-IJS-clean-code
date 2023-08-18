@@ -2,7 +2,7 @@ class TennisGame1 {
     constructor(player1Name, player2Name) {
     this.m_score1 = 0;
     this.m_score2 = 0;
-    this.player1Name = player1Name;
+    this.player1Name = player1Name; // melhoria: relacionar o jogador ao score
     this.player2Name = player2Name;
     }
 
@@ -13,10 +13,10 @@ wonPoint(playerName) {
         this.m_score2 ++}
 };
 
-getScore() {
+getScore() { // melhoria, separar essa função em 3
     let score = "";
     let tempScore = 0;
-    if (this.m_score1 === this.m_score2) {
+    if (this.m_score1 === this.m_score2) { // função de empate
         switch (this.m_score1) {
             case 0:
                 score = "Love-All";
@@ -31,13 +31,27 @@ getScore() {
                 score = "Deuce";
                 break;
         }
-    } else if (this.m_score1 >= 4 || this.m_score2 >= 4) {
+
+    } else if (this.m_score1 >= 4 || this.m_score2 >= 4) { // função que vê a vantagem
         let minusResult = this.m_score1 - this.m_score2;
-        if (minusResult === 1) score = "Advantage player1";
-        else if (minusResult === -1) score = "Advantage player2";
-        else if (minusResult >= 2) score = "Win for player1";
-        else score = "Win for player2";
-    } else {
+
+        switch (minusResult) {
+            case 1:
+                score = "Advantage player1";
+                break;
+            case -1:
+                score = "Advantage player2";
+                break;
+            default:
+                if (minusResult >= 2) {
+                    score = "Win for player1";
+                } else {
+                    score = "Win for player2";
+                }
+                break;
+        }
+
+    } else { // função que vê o score
         for (let i = 1; i < 3; i++) {
             if (i === 1) tempScore = this.m_score1;
             else {
@@ -60,7 +74,7 @@ getScore() {
             }
         }
     }
-    return score;
+    return console.log(score);
 };
 
 }
