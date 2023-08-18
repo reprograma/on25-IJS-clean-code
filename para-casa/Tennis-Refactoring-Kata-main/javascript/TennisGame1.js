@@ -1,67 +1,69 @@
-var TennisGame1 = function(player1Name, player2Name) {
-    this.m_score1 = 0;
-    this.m_score2 = 0;
-    this.player1Name = player1Name;
-    this.player2Name = player2Name;
-};
+class TennisGame {
+    constructor(player1Name, player2Name) {
+        this.player1Score = 0;
+        this.player2Score = 0;
+        this.player1Name = player1Name;
+        this.player2Name = player2Name;
+    }
 
-TennisGame1.prototype.wonPoint = function(playerName) {
-    if (playerName === "player1")
-        this.m_score1 += 1;
-    else
-        this.m_score2 += 1;
-};
+    // Registra um ponto para o jogador
+    wonPoint(playerName) {
+        if (playerName === this.player1Name)
+            this.player1Score++;
+        else
+            this.player2Score++;
+    }
 
-TennisGame1.prototype.getScore = function() {
-    var score = "";
-    var tempScore = 0;
-    if (this.m_score1 === this.m_score2) {
-        switch (this.m_score1) {
-            case 0:
-                score = "Love-All";
-                break;
-            case 1:
-                score = "Fifteen-All";
-                break;
-            case 2:
-                score = "Thirty-All";
-                break;
-            default:
-                score = "Deuce";
-                break;
-        }
-    } else if (this.m_score1 >= 4 || this.m_score2 >= 4) {
-        var minusResult = this.m_score1 - this.m_score2;
-        if (minusResult === 1) score = "Advantage player1";
-        else if (minusResult === -1) score = "Advantage player2";
-        else if (minusResult >= 2) score = "Win for player1";
-        else score = "Win for player2";
-    } else {
-        for (var i = 1; i < 3; i++) {
-            if (i === 1) tempScore = this.m_score1;
-            else {
-                score += "-";
-                tempScore = this.m_score2;
-            }
-            switch (tempScore) {
-                case 0:
-                    score += "Love";
-                    break;
-                case 1:
-                    score += "Fifteen";
-                    break;
-                case 2:
-                    score += "Thirty";
-                    break;
-                case 3:
-                    score += "Forty";
-                    break;
-            }
+    // Verifica se os jogadores têm o mesmo numero de pontos
+    isTied() {
+        return this.player1Score === this.player2Score;
+    }
+
+    // Retorna a pontuação 
+    getTiedScore() {
+        if (this.player1Score >= 3) {
+            return "Deuce";
+        } else {
+            const scoreNames = ["Love", "Fifteen", "Thirty"];
+            return `${scoreNames[this.player1Score]}-All`;
         }
     }
-    return score;
-};
+
+    // Verifica se algum jogador tem vantagem ou vence
+    hasAdvantageOrWinner() {
+        return this.player1Score >= 4 || this.player2Score >= 4;
+    }
+
+    // Retorna a pontuação quando um jogador tem vantagem ou vence
+    getAdvantageOrWinnerScore() {
+        const scoreDifference = Math.abs(this.player1Score - this.player2Score);
+        if (scoreDifference === 1) {
+            const leadingPlayer = this.player1Score > this.player2Score ? this.player1Name : this.player2Name;
+            return `Advantage ${leadingPlayer}`;
+        } else {
+            const winningPlayer = this.player1Score > this.player2Score ? this.player1Name : this.player2Name;
+            return `Win for ${winningPlayer}`;
+        }
+    }
+
+    // Retorna a pontuação atual do jogo
+    getInGameScore() {
+        const scoreNames = ["Love", "Fifteen", "Thirty", "Forty"];
+        return `${scoreNames[this.player1Score]}-${scoreNames[this.player2Score]}`;
+    }
+
+    // Retorna a pontuação completa do jogo
+    getScore() {
+        if (this.isTied()) {
+            return this.getTiedScore();
+        } else if (this.hasAdvantageOrWinner()) {
+            return this.getAdvantageOrWinnerScore();
+        } else {
+            return this.getInGameScore();
+        }
+    }
+}
 
 if (typeof window === "undefined") {
-    module.exports = TennisGame1;
+    module.exports = TennisGame;
 }
