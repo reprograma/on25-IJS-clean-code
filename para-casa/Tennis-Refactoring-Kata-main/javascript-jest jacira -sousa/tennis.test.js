@@ -1,12 +1,12 @@
 'use strict';
 
-var each = require("jest-each").default;
-var getScore1 = require('./tennis1');
-var getScore2 = require('./tennis2');
-var getScore3 = require('./tennis3');
-var getScore4 = require('./tennis4');
+const each = require("jest-each").default;
+const getScore1 = require('./tennis1');
+const getScore2 = require('./tennis2');
+const getScore3 = require('./tennis3old');
+const getScore4 = require('./tennis4');
 
-var allScores = [
+const allScores = [
   [0, 0, "Love-All"],
   [1, 1, "Fifteen-All"],
   [2, 2, "Thirty-All"],
@@ -47,25 +47,25 @@ var allScores = [
   [14, 16, "Win for player2"]
 ];
 
-describe('getScore1', function() {
+describe('getScore1', () =>  {
   each(allScores).it("when the points are %s:%s is %s", function(p1, p2, expected) {
     expect(getScore1(p1, p2)).toEqual(expected);
   });
 });
 
-describe('getScore2', function() {
+describe('getScore2', () => {
   each(allScores).it("when the points are %s:%s is %s", function(p1, p2, expected) {
     expect(getScore2(p1, p2)).toEqual(expected);
   });
 });
 
-describe('getScore3', function() {
+describe('getScore3', () => {
   each(allScores).it("when the points are %s:%s is %s", function(p1, p2, expected) {
     expect(getScore3(p1, p2)).toEqual(expected);
   });
 });
 
-describe('getScore4', function() {
+describe('getScore4', () => {
   each(allScores).it("when the points are %s:%s is %s", function(p1, p2, expected) {
     expect(getScore4(p1, p2)).toEqual(expected);
   });
