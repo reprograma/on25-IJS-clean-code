@@ -1,32 +1,51 @@
-var TennisGame3 = function(p1N, p2N) {
-    this.p2 = 0;
-    this.p1 = 0;
-
-    this.p1N = p1N;
-    this.p2N = p2N;
-};
+function TennisGame3(player1Name, player2Name) {
+    this.player1Score = 0;
+    this.player2Score = 0;
+    this.player1Name = player1Name;
+    this.player2Name = player2Name;
+}
 
 TennisGame3.prototype.getScore = function() {
-    var s;
-    if ((this.p1 < 4 && this.p2 < 4) && (this.p1 + this.p2 < 6)) {
-        var p = ["Love", "Fifteen", "Thirty", "Forty"];
-        s = p[this.p1];
-        return (this.p1 == this.p2) ? s + "-All" : s + "-" + p[this.p2];
+    if (this.player1Score === this.player2Score) {
+        return this.getEqualScore();
+    } else if (this.player1Score >= 4 || this.player2Score >= 4) {
+        return this.getAdvantageOrWin();
     } else {
-        if (this.p1 == this.p2)
-            return "Deuce";
-        s = this.p1 > this.p2 ? this.p1N : this.p2N;
-        return ((this.p1 - this.p2) * (this.p1 - this.p2) == 1) ? "Advantage " + s : "Win for " + s;
+        return this.getRegularScore();
     }
 };
 
-TennisGame3.prototype.wonPoint = function(playerName) {
-    if (playerName == "player1")
-        this.p1 += 1;
-    else
-        this.p2 += 1;
-
+TennisGame3.prototype.getEqualScore = function() {
+    const scoreNames = ["Love-All", "Fifteen-All", "Thirty-All", "Deuce"];
+    return this.player1Score < 3 ? scoreNames[this.player1Score] : scoreNames[3];
 };
+
+TennisGame3.prototype.getAdvantageOrWin = function() {
+    const scoreDifference = Math.abs(this.player1Score - this.player2Score);
+    const leadingPlayer = this.player1Score > this.player2Score ? this.player1Name : this.player2Name;
+
+    if (scoreDifference === 1) {
+        return "Advantage " + leadingPlayer;
+    } else {
+        return "Win for " + leadingPlayer;
+    }
+};
+
+TennisGame3.prototype.getRegularScore = function() {
+    const scoreNames = ["Love", "Fifteen", "Thirty", "Forty"];
+    return scoreNames[this.player1Score] + "-" + scoreNames[this.player2Score];
+};
+
+TennisGame3.prototype.wonPoint = function(playerName) {
+    if (playerName === "player1") {
+        this.player1Score++;
+    } else {
+        this.player2Score++;
+    }
+};
+
+
+
 
 if (typeof window === "undefined") {
     module.exports = TennisGame3;
