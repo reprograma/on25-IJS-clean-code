@@ -2,8 +2,8 @@
 
 function getScore(p1, p2) {
     var s;
-    let p1N = "player1";
-    let p2N = "player2";
+    const players = ["player1" , "player2"]
+
     if ((p1 < 4 && p2 < 4) && (p1 + p2 < 6)) {
         var p = ["Love", "Fifteen", "Thirty", "Forty"];
         s = p[p1];
@@ -12,7 +12,7 @@ function getScore(p1, p2) {
         if (p1 === p2) {
             return "Deuce";
         }
-        s = p1 > p2 ? p1N : p2N;
+        s = p1 > p2 ? players[0] : players[1];
         return ((p1 - p2) * (p1 - p2) === 1) ? "Advantage " + s : "Win for " + s;
     }
 }
