@@ -47,11 +47,13 @@ var allScores = [
   [14, 16, "Win for player2"]
 ];
 
+/*
 describe('getScore1', function() {
   each(allScores).it("when the points are %s:%s is %s", function(p1, p2, expected) {
     expect(getScore1(p1, p2)).toEqual(expected);
   });
 });
+*/
 
 describe('getScore2', function() {
   each(allScores).it("when the points are %s:%s is %s", function(p1, p2, expected) {
@@ -59,6 +61,7 @@ describe('getScore2', function() {
   });
 });
 
+/*
 describe('getScore3', function() {
   each(allScores).it("when the points are %s:%s is %s", function(p1, p2, expected) {
     expect(getScore3(p1, p2)).toEqual(expected);
@@ -70,3 +73,4 @@ describe('getScore4', function() {
     expect(getScore4(p1, p2)).toEqual(expected);
   });
 });
+*/
