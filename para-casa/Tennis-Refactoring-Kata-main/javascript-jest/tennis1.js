@@ -1,5 +1,9 @@
 'use strict';
 
+const
+    SCORE_NAMES = ["Love", "Fifteen", "Thirty", "Forty"],
+    TIE_SCORE_NAMES = ["Love-All", "Fifteen-All", "Thirty-All", "Deuce"];
+
 function getScore(m_score1, m_score2) {
     var score = "";
     var tempScore = 0;
