@@ -1,53 +1,34 @@
 'use strict';
 
-function getScore(m_score1, m_score2) {
-    var score = "";
-    var tempScore = 0;
-    if (m_score1 === m_score2) {
-        switch (m_score1) {
-            case 0:
-                score = "Love-All";
-                break;
-            case 1:
-                score = "Fifteen-All";
-                break;
-            case 2:
-                score = "Thirty-All";
-                break;
-            default:
-                score = "Deuce";
-                break;
+const
+    SCORE_NAMES = ["Love", "Fifteen", "Thirty", "Forty"],
+    TIE_SCORE_NAMES = ["Love-All", "Fifteen-All", "Thirty-All", "Deuce"];
+
+function getScore(playerScore1, playerScore2) {
+    if(playerScore1 === playerScore2) {
+        if(playerScore1 >= 0 && playerScore1 < TIE_SCORE_NAMES.length) {
+            return TIE_SCORE_NAMES[playerScore1];
+        } else {
+            return "Deuce";
         }
-    } else if (m_score1 >= 4 || m_score2 >= 4) {
-        var minusResult = m_score1 - m_score2;
-        if (minusResult === 1) {score = "Advantage player1";}
-        else if (minusResult === -1) {score = "Advantage player2";}
-        else if (minusResult >= 2) {score = "Win for player1";}
-        else {score = "Win for player2";}
+    } else if(playerScore1 >= 4 || playerScore2 >= 4) {
+        const scoreDifference = playerScore1 - playerScore2;
+        if(Math.abs(scoreDifference) === 1) {
+            return `Advantage ${ scoreDifference === 1 ? "player1" : "player2" }`
+        } else {
+            return `Win for ${ scoreDifference > 1 ? "player1" : "player2" }`
+        }
     } else {
-        for (var i = 1; i < 3; i++) {
-            if (i === 1) {tempScore = m_score1;}
-            else {
-                score += "-";
-                tempScore = m_score2;
-            }
-            switch (tempScore) {
-                case 0:
-                    score += "Love";
-                    break;
-                case 1:
-                    score += "Fifteen";
-                    break;
-                case 2:
-                    score += "Thirty";
-                    break;
-                case 3:
-                    score += "Forty";
-                    break;
-            }
-        }
+        return buildRegularScore(playerScore1) + "-" + buildRegularScore(playerScore2);
     }
-    return score;
+}
+
+function buildRegularScore(score) {
+    if(score >= 0 && score < SCORE_NAMES.length) {
+        return SCORE_NAMES[score];
+    } else {
+        return "";
+    }
 }
 
 module.exports = getScore;

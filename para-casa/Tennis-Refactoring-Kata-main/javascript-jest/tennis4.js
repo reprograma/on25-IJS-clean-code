@@ -12,7 +12,7 @@ class TennisGame {
         this.serverScore = serverScore;
         this.receiverScore = receiverScore;
 
-        let result = new Deuce(
+        const result = new Deuce(
             this, new GameServer(
                 this, new GameReceiver(
                     this, new AdvantageServer(
@@ -50,13 +50,13 @@ class TennisResult {
     }
 
     format() {
-        if ("" === this.receiverScore) {
+        if (this.receiverScore === "") {
             return this.serverScore;
         }
         if (this.serverScore === this.receiverScore) {
-            return this.serverScore + "-All";
+            return `${this.serverScore}-All`
         }
-        return this.serverScore + "-" + this.receiverScore;
+        return `${this.serverScore}-${this.receiverScore}`
     }
 }
 
@@ -82,7 +82,7 @@ class GameServer {
 
     getResult() {
         if (this.game.serverHasWon()) {
-            return new TennisResult("Win for " + this.game.server, "");
+            return new TennisResult(`Win for ${this.game.server}`, "");
         }
         return this.nextResult.getResult();
     }
@@ -96,7 +96,7 @@ class GameReceiver {
 
     getResult() {
         if (this.game.receiverHasWon()) {
-            return new TennisResult("Win for " + this.game.receiver, "");
+            return new TennisResult(`Win for ${this.game.receiver}`, "");
         }
         return this.nextResult.getResult();
     }
@@ -110,7 +110,7 @@ class AdvantageServer {
 
     getResult() {
         if (this.game.serverHasAdvantage()) {
-            return new TennisResult("Advantage " + this.game.server, "");
+            return new TennisResult(`Advantage ${this.game.server}`, "");
         }
         return this.nextResult.getResult();
     }
@@ -124,7 +124,7 @@ class AdvantageReceiver {
 
     getResult() {
         if (this.game.receiverHasAdvantage()) {
-            return new TennisResult("Advantage " + this.game.receiver, "");
+            return new TennisResult(`Advantage ${this.game.receiver}`, "");
         }
         return this.nextResult.getResult();
     }
@@ -143,7 +143,7 @@ class DefaultResult {
 
 
 function getScore(serverScore, receiverScore) {
-    let game = new TennisGame("player1", "player2");
+    const game = new TennisGame("player1", "player2")
     return game.getScore(serverScore, receiverScore);
 }
 
