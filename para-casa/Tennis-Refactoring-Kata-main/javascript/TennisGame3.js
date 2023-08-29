@@ -1,33 +1,49 @@
-var TennisGame3 = function(p1N, p2N) {
-    this.p2 = 0;
-    this.p1 = 0;
-
-    this.p1N = p1N;
-    this.p2N = p2N;
-};
-
-TennisGame3.prototype.getScore = function() {
-    var s;
-    if ((this.p1 < 4 && this.p2 < 4) && (this.p1 + this.p2 < 6)) {
-        var p = ["Love", "Fifteen", "Thirty", "Forty"];
-        s = p[this.p1];
-        return (this.p1 == this.p2) ? s + "-All" : s + "-" + p[this.p2];
-    } else {
-        if (this.p1 == this.p2)
-            return "Deuce";
-        s = this.p1 > this.p2 ? this.p1N : this.p2N;
-        return ((this.p1 - this.p2) * (this.p1 - this.p2) == 1) ? "Advantage " + s : "Win for " + s;
+class TennisGame3 {
+    constructor(p1N, p2N) {
+        this.p1N = p1N;
+        this.p2N = p2N;
+        this.p1Score = 0;
+        this.p2Score = 0;
     }
-};
 
-TennisGame3.prototype.wonPoint = function(playerName) {
-    if (playerName == "player1")
-        this.p1 += 1;
-    else
-        this.p2 += 1;
+    getScore() {
+        if (this.isRegularScore()) {
+            const scoreNames = ["Love", "Fifteen", "Thirty", "Forty"];
+            const p1ScoreName = scoreNames[this.p1Score];
+            const p2ScoreName = scoreNames[this.p2Score];
 
-};
+            if (this.p1Score === this.p2Score) {
+                return `${p1ScoreName}-All`;
+            } else {
+                return `${p1ScoreName}-${p2ScoreName}`;
+            }
+        } else if (this.isDeuce()) {
+            return "Deuce";
+        } else {
+            const leadingPlayer = this.p1Score > this.p2Score ? this.p1N : this.p2N;
+            const scoreDifference = Math.abs(this.p1Score - this.p2Score);
 
-if (typeof window === "undefined") {
-    module.exports = TennisGame3;
+            if (scoreDifference === 1) {
+                return `Advantage ${leadingPlayer}`;
+            } else {
+                return `Win for ${leadingPlayer}`;
+            }
+        }
+    }
+
+    wonPoint(playerName) {
+        if (playerName === "player1") {
+            this.p1Score++;
+        } else {
+            this.p2Score++;
+        }
+    }
+
+    isRegularScore() {
+        return this.p1Score < 4 && this.p2Score < 4 && this.p1Score + this.p2Score < 6;
+    }
+
+    isDeuce() {
+        return this.p1Score === this.p2Score && this.p1Score >= 3;
+    }
 }
