@@ -1,121 +1,72 @@
-var TennisGame2 = function(player1Name, player2Name) {
-    this.P1point = 0;
-    this.P2point = 0;
-
-    this.P1res = "";
-    this.P2res = "";
-
+class TennisGame {
+  constructor(player1Name, player2Name) {
     this.player1Name = player1Name;
     this.player2Name = player2Name;
-};
+    this.player1Score = 0;
+    this.player2Score = 0;
+    this.scoreLabels = ["Love", "Fifteen", "Thirty", "Forty"];
+  }
 
-TennisGame2.prototype.getScore = function() {
-    var score = "";
-
-    if (this.P1point === this.P2point && this.P1point < 3) {
-        if (this.P1point === 0)
-            score = "Love";
-        if (this.P1point === 1)
-            score = "Fifteen";
-        if (this.P1point === 2)
-            score = "Thirty";
-        score += "-All";
+  getScore() {
+    if (this.isScoreEqual()) {
+      if (this.player1Score < 3) {
+        return this.scoreLabels[this.player1Score] + "-All";
+      }
+      return "Deuce";
+    } else if (this.hasAdvantage()) {
+      const leadingPlayer =
+        this.player1Score > this.player2Score
+          ? this.player1Name
+          : this.player2Name;
+      return `Advantage ${leadingPlayer}`;
+    } else if (this.hasWinner()) {
+      const winningPlayer =
+        this.player1Score > this.player2Score
+          ? this.player1Name
+          : this.player2Name;
+      return `Win for ${winningPlayer}`;
+    } else {
+      return `${this.scoreLabels[this.player1Score]}-${
+        this.scoreLabels[this.player2Score]
+      }`;
     }
-    if (this.P1point === this.P2point && this.P1point > 2)
-        score = "Deuce";
+  }
 
-    if (this.P1point > 0 && this.P2point === 0) {
-        if (this.P1point === 1)
-            this.P1res = "Fifteen";
-        if (this.P1point === 2)
-            this.P1res = "Thirty";
-        if (this.P1point === 3)
-            this.P1res = "Forty";
+  isScoreEqual() {
+    return this.player1Score === this.player2Score;
+  }
 
-        this.P2res = "Love";
-        score = this.P1res + "-" + this.P2res;
+  hasAdvantage() {
+    return (
+      Math.abs(this.player1Score - this.player2Score) === 1 &&
+      (this.player1Score >= 3 || this.player2Score >= 3)
+    );
+  }
+
+  hasWinner() {
+    return (
+      Math.abs(this.player1Score - this.player2Score) >= 2 &&
+      (this.player1Score >= 4 || this.player2Score >= 4)
+    );
+  }
+
+  player1Scores() {
+    this.player1Score++;
+  }
+
+  player2Scores() {
+    this.player2Score++;
+  }
+
+  wonPoint(player) {
+    if (player === "player1") {
+      this.player1Scores();
+    } else {
+      this.player2Scores();
     }
-    if (this.P2point > 0 && this.P1point === 0) {
-        if (this.P2point === 1)
-            this.P2res = "Fifteen";
-        if (this.P2point === 2)
-            this.P2res = "Thirty";
-        if (this.P2point === 3)
-            this.P2res = "Forty";
-
-        this.P1res = "Love";
-        score = this.P1res + "-" + this.P2res;
-    }
-
-    if (this.P1point > this.P2point && this.P1point < 4) {
-        if (this.P1point === 2)
-            this.P1res = "Thirty";
-        if (this.P1point === 3)
-            this.P1res = "Forty";
-        if (this.P2point === 1)
-            this.P2res = "Fifteen";
-        if (this.P2point === 2)
-            this.P2res = "Thirty";
-        score = this.P1res + "-" + this.P2res;
-    }
-    if (this.P2point > this.P1point && this.P2point < 4) {
-        if (this.P2point === 2)
-            this.P2res = "Thirty";
-        if (this.P2point === 3)
-            this.P2res = "Forty";
-        if (this.P1point === 1)
-            this.P1res = "Fifteen";
-        if (this.P1point === 2)
-            this.P1res = "Thirty";
-        score = this.P1res + "-" + this.P2res;
-    }
-
-    if (this.P1point > this.P2point && this.P2point >= 3) {
-        score = "Advantage player1";
-    }
-
-    if (this.P2point > this.P1point && this.P1point >= 3) {
-        score = "Advantage player2";
-    }
-
-    if (this.P1point >= 4 && this.P2point >= 0 && (this.P1point - this.P2point) >= 2) {
-        score = "Win for player1";
-    }
-    if (this.P2point >= 4 && this.P1point >= 0 && (this.P2point - this.P1point) >= 2) {
-        score = "Win for player2";
-    }
-    return score;
-};
-
-TennisGame2.prototype.SetP1Score = function(number) {
-    var i;
-    for (i = 0; i < number; i++) {
-        this.P1Score();
-    }
-};
-
-TennisGame2.prototype.SetP2Score = function(number) {
-    var i;
-    for (i = 0; i < number; i++) {
-        this.P2Score();
-    }
-};
-
-TennisGame2.prototype.P1Score = function() {
-    this.P1point++;
-};
-
-TennisGame2.prototype.P2Score = function() {
-    this.P2point++;
-};
-
-TennisGame2.prototype.wonPoint = function(player) {
-    if (player === "player1")
-        this.P1Score();
-    else
-        this.P2Score();
-};
+  }
+}
 
 if (typeof window === "undefined") {
-    module.exports = TennisGame2;
+  module.exports = TennisGame;
 }
